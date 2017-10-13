@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.shibuyaxpress.lab08sharedpreferences.LoginActivity">
+
+    <EditText
+        android:id="@+id/edit_username"
+        android:drawableStart="@drawable/ic_person"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="172dp"
+        android:ems="10"
+        android:fontFamily="@font/maximilen"
+        android:hint="@string/username"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:drawableStart="@drawable/ic_lock"
+        android:id="@+id/edit_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/edit_username"
+        android:layout_below="@+id/edit_username"
+        android:layout_marginTop="31dp"
+        android:ems="10"
+        android:fontFamily="@font/maximilen"
+        android:hint="@string/password"
+        android:inputType="textPassword" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_above="@+id/edit_password"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="91dp"
+        app:srcCompat="@drawable/ic_directions_run_black" android:contentDescription="@string/todo" />
+
+    <Button
+        android:id="@+id/button"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableEnd="@drawable/ic_chevron_right_black"
+        android:layout_below="@+id/edit_password"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="34dp"
+        android:fontFamily="@font/maximilen"
+        android:onClick="SignIn"
+        android:text="@string/sign_in_sign_up" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/edit_password"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="67dp"
+        android:fontFamily="@font/maximilen"
+        android:text="@string/lul"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+</RelativeLayout>
