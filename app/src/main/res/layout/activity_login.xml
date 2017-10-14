@@ -46,12 +46,12 @@
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:drawableEnd="@drawable/ic_chevron_right_black"
         android:layout_below="@+id/edit_password"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="34dp"
+        android:drawableEnd="@drawable/ic_chevron_right_black"
         android:fontFamily="@font/maximilen"
-        android:onClick="SignIn"
+        android:onClick="Check"
         android:text="@string/sign_in_sign_up" />
 
     <TextView

@@ -3,6 +3,7 @@ package com.shibuyaxpress.lab08sharedpreferences;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -27,7 +28,15 @@ public class LoginActivity extends AppCompatActivity {
         password = editTextPassword.getText().toString();
         User u= new User();
         u.CheckUsers(username,password);
-        Intent launcher=new Intent(this,MenuActivity.class);
-        startActivity(launcher);
+        if(TextUtils.isEmpty(username)){
+            editTextUser.setError("Necesita ingresar datos");
+        }else if(TextUtils.isEmpty(password)){
+            editTextPassword.setError("Necesita ingresar una contraseña");
+        }
+        else{
+            Intent launcher=new Intent(this,MenuActivity.class);
+            startActivity(launcher);
+        }
+
     }
 }

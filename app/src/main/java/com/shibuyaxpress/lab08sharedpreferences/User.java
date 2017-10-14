@@ -12,6 +12,14 @@ public class User {
     private String name;
     private String language;
     private String styles;
+    private static User _INSTANCE=null;
+
+    public static User getInstance(){
+        if(_INSTANCE==null){
+            _INSTANCE=new User();
+        }
+        return _INSTANCE;
+    }
 
     public User() {
     }
@@ -78,8 +86,17 @@ public class User {
                         u.setUsername(username);
                         u.setPassword(password);
                         UserRepository.getInstance().setUsers(u);
+                        User.getInstance().setUsername(u.getUsername());
+                        User.getInstance().setPassword(u.getPassword());
 
                     }
+                }else {
+                    User u=new User();
+                    u.setUsername(username);
+                    u.setPassword(password);
+                    UserRepository.getInstance().setUsers(u);
+                    User.getInstance().setUsername(u.getUsername());
+                    User.getInstance().setPassword(u.getPassword());
                 }
             }
 

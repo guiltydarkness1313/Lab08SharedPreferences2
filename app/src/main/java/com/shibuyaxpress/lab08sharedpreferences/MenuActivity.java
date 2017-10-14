@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 public class MenuActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -30,7 +31,14 @@ public class MenuActivity extends AppCompatActivity
         toggle.syncState();
 
         NavigationView navigationView = findViewById(R.id.nav_view);
+        TextView username=navigationView.getHeaderView(0).findViewById(R.id.txt_username);
+        TextView name=navigationView.getHeaderView(0).findViewById(R.id.txt_name);
+        name.setText(User.getInstance().getName());
+        username.setText(User.getInstance().getUsername());
         navigationView.setNavigationItemSelectedListener(this);
+
+        TextView welcome=findViewById(R.id.txtNameUser);
+        welcome.setText(User.getInstance().getUsername());
     }
 
     @Override
@@ -58,6 +66,8 @@ public class MenuActivity extends AppCompatActivity
             case R.id.nav_settings:
                 break;
             case R.id.nav_log_out:
+                //iniciar cierre de sesion
+                finish();
                 break;
         }
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
