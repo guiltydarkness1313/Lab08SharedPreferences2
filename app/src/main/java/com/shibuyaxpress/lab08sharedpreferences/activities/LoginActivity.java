@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 
+
 import com.shibuyaxpress.lab08sharedpreferences.R;
 import com.shibuyaxpress.lab08sharedpreferences.models.User;
 import com.shibuyaxpress.lab08sharedpreferences.repositories.UserRepository;
@@ -41,40 +42,35 @@ public class LoginActivity extends AppCompatActivity {
             editTextPassword.setError("Necesita ingresar una contraseña");
         }
         else{
+           // boolean fail=false;
             List<User> lista=UserRepository.list();
-            for(int i=0; i<lista.size();i++){
-                boolean fail=false;
-                System.out.println(lista.get(i).getId()+lista.get(i).getUsername());
-                if(lista.get(i).getUsername().equals(username)&&lista.get(i).getPassword().equals(password)){
-                    System.out.println("se identifico correctamente");
-                    SharedPreferences.Editor editor= preferences.edit();
-                    editor.putString("username",username).commit();
-                    startActivity(launcher);
-                    break;
+            if(lista.isEmpty()){
+                UserRepository.create(username,password);
+                SharedPreferences.Editor editor= preferences.edit();
+                editor.putString("username",username).commit();
+                startActivity(launcher);
+            }
+            else
+            {
+                for(int i=0; i<lista.size();i++){
+                    System.out.println(lista.get(i).getId()+lista.get(i).getUsername());
+                    if(lista.get(i).getUsername().equals(username)&&lista.get(i).getPassword().equals(password)){
+                        System.out.println("se identifico correctamente");
+                        SharedPreferences.Editor editor= preferences.edit();
+                        editor.putString("username",username).commit();
+                        startActivity(launcher);
+                        break;
 
-                }else {
-                    if(!(lista.get(i).getPassword().equals(password)) && fail==true){
-                        editTextPassword.setError("Contraseña fallida");
-                        fail=true;
-                    }
-                    if(lista.size()==i){
+                    }else{
                         UserRepository.create(username,password);
+                        System.out.println("Nuevo usuario creado");
                         SharedPreferences.Editor editor= preferences.edit();
                         editor.putString("username",username).commit();
                         startActivity(launcher);
                         break;
                     }
-
                 }
             }
-
-
-
-
-
-
-
         }
-
     }
 }
