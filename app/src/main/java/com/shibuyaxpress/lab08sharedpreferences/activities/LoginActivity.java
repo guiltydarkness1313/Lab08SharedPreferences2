@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 
 import com.shibuyaxpress.lab08sharedpreferences.R;
@@ -52,23 +53,26 @@ public class LoginActivity extends AppCompatActivity {
             }
             else
             {
+                Boolean existe=false;
                 for(int i=0; i<lista.size();i++){
                     System.out.println(lista.get(i).getId()+lista.get(i).getUsername());
-                    if(lista.get(i).getUsername().equals(username)&&lista.get(i).getPassword().equals(password)){
+                    if(lista.get(i).getUsername().equals(username)&&lista.get(i).getPassword().equals(password)) {
                         System.out.println("se identifico correctamente");
-                        SharedPreferences.Editor editor= preferences.edit();
-                        editor.putString("username",username).commit();
+                        SharedPreferences.Editor editor = preferences.edit();
+                        editor.putString("username", username).commit();
                         startActivity(launcher);
+                        existe = true;
+                        Toast.makeText(getApplicationContext(),"Bienvenido de nuevo "+username,Toast.LENGTH_SHORT).show();
                         break;
-
-                    }else{
+                    }
+                }
+                if(!existe){
                         UserRepository.create(username,password);
                         System.out.println("Nuevo usuario creado");
                         SharedPreferences.Editor editor= preferences.edit();
                         editor.putString("username",username).commit();
+                        Toast.makeText(getApplicationContext(),"Bienvenido",Toast.LENGTH_SHORT).show();
                         startActivity(launcher);
-                        break;
-                    }
                 }
             }
         }
